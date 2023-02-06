@@ -87,6 +87,11 @@ main {
         color: white;
         cursor: pointer;
         font-size: 18px;
+        opacity: .8;
+        transition: opacity .2s;
+    }
+    .task-submit:hover {
+        opacity: 1;
     }
 
 .todolist__tasks-list {
@@ -149,7 +154,7 @@ main {
 }
 
 .btn-delete-all {
-    width: 96px;
+    width: 160px;
     height: 48px;
     appearance: none;
     border: none;
@@ -158,4 +163,9 @@ main {
     color: var(--white);
     cursor: pointer;
     font-size: 18px;
+    opacity: .8;
+    transition: opacity .2s;
+}
+.btn-delete-all:hover {
+    opacity: 1;
 }

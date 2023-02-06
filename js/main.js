@@ -14,6 +14,7 @@ const submitNewTask = () => {
 
   //Getting input value
   const newTask = document.querySelector('.js-task-input').value;
+  
   if (newTask != '') {
     //Pushing task into tasks array
     tasksArr.push({id: taskIdAcc, content: newTask, isCompleted: false});
