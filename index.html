@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="todolist__title">
+            <h1>#todo</h1>
+        </div>
+        <div class="todolist__categories">
+            <div class="category">
+                <input  id="all" class="category-radio all" type="radio" name="category" checked>
+                <label for="all">All</label>
+            </div>
+            <div class="category">
+                <input id="active" class="category-radio active" type="radio" name="category">
+                <label for="active">Active</label>
+            </div>
+            <div class="category">
+                <input id="completed" class="category-radio completed" type="radio" name="category">
+                <label for="completed">Completed</label>
+            </div>
+        </div>
+        <div class="todolist__input">
+            <input class="task-input" type="text" placeholder="Add a task..." required>
+            <input class="task-submit" type="submit" value="Add">
+        </div>
+        <div class="todolist__tasks-list">
+        </div>
+
+        <div class="todolist__delete-all">
+            <button class="btn btn-delete-all">Delete All</button>
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html>

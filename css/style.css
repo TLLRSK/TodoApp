@@ -1,0 +1,155 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --main: hsl(215, 95%, 64%);
+    --secondary: hsl(351, 0%, 69%);
+    --delete: hsl(359, 81%, 64%);
+    --white: hsl(48, 81%, 100%);
+    --black: hsl(48, 81%, 0%);
+    font-size: 12px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+main {
+    width: 40vw;
+    height: 40vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 24px;
+    gap: 24px;
+}
+
+.todolist__title {
+    font-size: 32px;
+    text-align: center;
+}
+
+/* Categories */
+.todolist__categories {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--secondary);
+}
+.category {
+    display: flex;
+    height: 24px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+    input[type='radio'] {
+        appearance: none;
+    }
+    input[type='radio']:hover + label {
+        cursor: pointer;
+    }
+    input[type='radio']:checked + label {
+        text-decoration: underline;
+    }
+
+/* Input */
+.todolist__input {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    
+}
+    .task-input {
+        appearance: none;
+        flex: 1;
+        height: 48px;
+        padding: 12px;
+        border: none;
+        outline: 2px solid var(--secondary);
+        border-radius: 12px;
+    }
+  
+    .task-submit {
+        width: 96px;
+        height: 48px;
+        border: none;
+        border-radius: 12px;
+        background-color: var(--main);
+        color: white;
+        cursor: pointer;
+    }
+
+.todolist__tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+    .btn-container {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+.task-checkbox {
+    width: 24px;
+    height: 24px;
+}
+
+.task-checkbox:checked + .task-content {
+    text-decoration:line-through;
+}
+
+.task-content {
+    font-size: 24px;
+}
+
+.todolist__delete-all {
+    display: none;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+}
+
+/* Btns */
+.btn {
+    width: 80px;
+    height: 20px;
+}
+
+.btn-delete {
+    width: 96px;
+    appearance: none;
+    border: none;
+    color: var(--delete);
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+}
+
+.btn-delete-all {
+    width: 96px;
+    height: 48px;
+    appearance: none;
+    border: none;
+    border-radius: 12px;
+    background: var(--delete);
+    color: var(--white);
+}
