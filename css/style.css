@@ -46,7 +46,7 @@ main {
     flex: 1;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
 }
     input[type='radio'] {
@@ -86,6 +86,7 @@ main {
         background-color: var(--main);
         color: white;
         cursor: pointer;
+        font-size: 18px;
     }
 
 .todolist__tasks-list {
@@ -100,12 +101,6 @@ main {
     align-items: center;
     gap: 12px;
 }
-    .btn-container {
-        display: flex;
-        flex: 1;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
 
 .task-checkbox {
     width: 24px;
@@ -117,10 +112,20 @@ main {
 }
 
 .task-content {
-    font-size: 24px;
+    font-size: 20px;
 }
 
-.todolist__delete-all {
+/* Btns */
+
+.btn-delete-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+
+.delete-all-container {
     display: none;
     flex: 1;
     justify-content: flex-end;
@@ -128,7 +133,6 @@ main {
 
 }
 
-/* Btns */
 .btn {
     width: 80px;
     height: 20px;
@@ -139,9 +143,9 @@ main {
     appearance: none;
     border: none;
     color: var(--delete);
-    cursor: pointer;
     background: transparent;
-    font-size: 16px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .btn-delete-all {
@@ -152,4 +156,6 @@ main {
     border-radius: 12px;
     background: var(--delete);
     color: var(--white);
+    cursor: pointer;
+    font-size: 18px;
 }

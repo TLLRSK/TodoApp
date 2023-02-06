@@ -1,12 +1,10 @@
 //Creating variables
 let tasksArr = [];
-
 let taskIdAcc = 0;
-let tasksList = document.querySelector('.todolist__tasks-list');
-
-const categoriesList = document.querySelector('.todolist__categories');
-let btnDeleteAll = document.querySelector('.todolist__delete-all');
-let input = document.querySelector('.todolist__input')
+let tasksList = document.querySelector('.js-todolist__tasks-list');
+let categoriesList = document.querySelector('.js-todolist__categories');
+let btnDeleteAll = document.querySelector('.js-delete-all-container');
+let input = document.querySelector('.js-todolist__input')
 
 //Categories radio
 let currentCategory = 'all';
@@ -15,24 +13,21 @@ let currentCategory = 'all';
 const submitNewTask = () => {
 
   //Getting input value
-  const newTask = document.querySelector('.task-input').value;
+  const newTask = document.querySelector('.js-task-input').value;
   if (newTask != '') {
     //Pushing task into tasks array
     tasksArr.push({id: taskIdAcc, content: newTask, isCompleted: false});
     
     //Creating task template
     const taskTemplate = `
-      <div id="${taskIdAcc}" class="task-container">
-        <input type="checkbox" class="task-checkbox">
-        <label class="task-content" for="task-checkbox">${newTask}</label>
+      <div id="${taskIdAcc}" class="task-container js-task-container">
+        <input type="checkbox" class="task-checkbox js-task-checkbox">
+        <label class="task-content" for="task-checkbox js-task-checkbox">${newTask}</label>
       </div>
       `;
 
-    //Adding new task to html if active category isn't completed
-    if (currentCategory !== 'completed') {
-      tasksList.innerHTML += taskTemplate;
-    }
-
+    //Adding new task to html
+    tasksList.innerHTML += taskTemplate;
     //Next id
     taskIdAcc++;
   }
@@ -44,16 +39,16 @@ const buildAllList = () => {
   tasksArr.forEach(task => {
     
     const taskTemplate =`
-      <div id="${task.id}" class="task-container">
-        <input type="checkbox" class="task-checkbox">
-        <label class="task-content" for="task-checkbox">${task.content}</label>
+      <div id="${task.id}" class="task-container js-task-container">
+        <input type="checkbox" class="task-checkbox js-task-checkbox">
+        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
       </div>
       `;
 
     const taskCompletedTemplate = `
-      <div id="${task.id}" class="task-container">
-        <input type="checkbox" class="task-checkbox" checked>
-        <label class="task-content" for="task-checkbox">${task.content}</label>
+      <div id="${task.id}" class="task-container js-task-container">
+        <input type="checkbox" class="task-checkbox js-task-checkbox" checked>
+        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
       </div>
       `;
 
@@ -67,9 +62,9 @@ const buildActiveList = () => {
   tasksArr.forEach(task => {
 
     const taskTemplate = `
-      <div id="${task.id}" class="task-container">
-        <input type="checkbox" class="task-checkbox">
-        <label class="task-content" for="task-checkbox">${task.content}</label>
+      <div id="${task.id}" class="task-container js-task-container">
+        <input type="checkbox" class="task-checkbox js-task-checkbox">
+        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
       </div>
       `;
 
@@ -86,11 +81,11 @@ const buildCompletedList = () => {
   tasksArr.forEach(task => {
 
     const taskCompletedTemplate = `
-      <div id="${task.id}" class="task-container">
-        <input type="checkbox" class="task-checkbox" checked>
-        <label class="task-content" for="task-checkbox">${task.content}</label>
-        <div class="btn-container">
-          <button class="btn btn-delete">Delete</button>
+      <div id="${task.id}" class="task-container js-task-container">
+        <input type="checkbox" class="task-checkbox js-task-checkbox" checked>
+        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
+        <div class="btn-delete-container">
+          <button class="btn btn-delete js-btn-delete">Delete</button>
         </div>
       </div>
       `;
@@ -103,15 +98,15 @@ const buildCompletedList = () => {
 
 //Submitting new task
 
-document.querySelector('.task-submit').addEventListener('click', submitNewTask)
+document.querySelector('.js-task-submit').addEventListener('click', submitNewTask)
 
 //Check if checkbox is checked or unchecked
 
-let todolist = document.querySelector('.todolist__tasks-list');
+let todolist = document.querySelector('.js-todolist__tasks-list');
 
 todolist.addEventListener('change', function(event) {
 
-  let checkboxes = document.querySelectorAll('.task-checkbox');
+  let checkboxes = document.querySelectorAll('.js-task-checkbox');
   
   //Accessing task object by parent id...
   const parentId = event.target.parentElement.id;
@@ -138,7 +133,6 @@ categoriesList.addEventListener('change', function(event) {
     buildActiveList();
     currentCategory = 'active';
   }
-  console.log(currentCategory)
 
   //Displaying delete all button if we're on completed category
   if (currentCategory == 'completed') {
@@ -151,25 +145,19 @@ categoriesList.addEventListener('change', function(event) {
 
 })
 
-//Managing completed tasks
-
+// Managing completed tasks
 //Using delete task button
 tasksList.addEventListener('click', function(event) {
-  if (event.target.classList.contains('btn-delete')) {
+  if (event.target.classList.contains('js-btn-delete')) {
     
     //Remove from tasks array
-    const parentId = event.target.closest('.task-container').id;
+    const parentId = event.target.closest('.js-task-container').id;
     const taskIndex = tasksArr.indexOf(tasksArr.find(object => object.id == parentId))
     tasksArr.splice(taskIndex, 1);
 
     //Remove from html
-    event.target.closest('.task-container').remove();
-
-
+    event.target.closest('.js-task-container').remove();
   }
-  console.log('tasks array')
-  console.log(tasksArr)
-  
 })
 
 //Using delete all completed tasks  

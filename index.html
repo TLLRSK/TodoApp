@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
         <div class="todolist__title">
             <h1>#todo</h1>
         </div>
-        <div class="todolist__categories">
+        <div class="todolist__categories js-todolist__categories">
             <div class="category">
                 <input  id="all" class="category-radio all" type="radio" name="category" checked>
                 <label for="all">All</label>
@@ -26,14 +26,14 @@
                 <label for="completed">Completed</label>
             </div>
         </div>
-        <div class="todolist__input">
-            <input class="task-input" type="text" placeholder="Add a task..." required>
-            <input class="task-submit" type="submit" value="Add">
+        <div class="todolist__input js-todolist__input">
+            <input class="task-input js-task-input" type="text" placeholder="Add a task..." required>
+            <input class="task-submit js-task-submit" type="submit" value="Add">
         </div>
-        <div class="todolist__tasks-list">
+        <div class="todolist__tasks-list js-todolist__tasks-list">
         </div>
 
-        <div class="todolist__delete-all">
+        <div class="delete-all-container js-delete-all-container">
             <button class="btn btn-delete-all">Delete All</button>
         </div>
     </main>
