@@ -68,7 +68,7 @@ main {
     gap: 12px;
     
 }
-    .task-input {
+    .input-btn {
         appearance: none;
         flex: 1;
         height: 48px;
@@ -78,7 +78,7 @@ main {
         border-radius: 12px;
     }
   
-    .task-submit {
+    .submit-btn {
         width: 96px;
         height: 48px;
         border: none;
@@ -90,7 +90,7 @@ main {
         opacity: .8;
         transition: opacity .2s;
     }
-    .task-submit:hover {
+    .submit-btn:hover {
         opacity: 1;
     }
 

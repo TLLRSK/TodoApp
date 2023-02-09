@@ -1,113 +1,100 @@
-//Creating variables
+// *VARIABLES*
 let tasksArr = [];
 let taskIdAcc = 0;
-let tasksList = document.querySelector('.js-todolist__tasks-list');
-let categoriesList = document.querySelector('.js-todolist__categories');
-let btnDeleteAll = document.querySelector('.js-delete-all-container');
-let input = document.querySelector('.js-todolist__input')
-
-//Categories radio
 let currentCategory = 'all';
 
-//Submitting new task to tasks list
+let categoriesList = document.querySelector('.js-todolist__categories');
+let tasksList = document.querySelector('.js-todolist__tasks-list');
+let btnDeleteAll = document.querySelector('.js-delete-all-container');
+let displayInput = document.querySelector('.js-todolist__input');
+let inputBtn = document.querySelector('.js-input-btn');
+let submit = document.querySelector('.js-submit-btn');
+
+// *FUNCTIONS*
+//Set category
+const setCategory = () => {
+  document.querySelectorAll('.category-radio').forEach(category => {
+    category.id === currentCategory ? category.checked = true : '';
+  })
+}
+
+//Setting interface
+const displayInterface = () => {
+  if (currentCategory == 'completed') {
+    btnDeleteAll.style.display = 'flex';
+    displayInput.style.display = 'none';
+    tasksList.innerHTML == '' ? console.log('empty') : console.log('not empty')
+  } else {
+    btnDeleteAll.style.display = 'none';
+    displayInput.style.display = 'flex';
+  }
+}
+
+//Build corresponding list
+const buildList = (arr) => {
+  //Reseting tasklist html
+  tasksList.innerHTML = '';
+
+  //Building list
+  arr.forEach(task => {
+    const btnDelete = `
+      <div class="btn-delete-container">
+        <button class="btn btn-delete js-btn-delete">Delete</button>
+      </div>`
+
+    const taskTemplate = `
+    <div id="${task.id}" class="task-container js-task-container">
+      <input type="checkbox" class="task-checkbox js-task-checkbox" ${task.isCompleted === true ? 'checked' : ''}>
+      <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
+      ${currentCategory === 'completed' && task.isCompleted === true ? btnDelete : ''}
+    </div>
+  `
+  tasksList.innerHTML += taskTemplate;
+  })
+}
+
+//Submit new task
 const submitNewTask = () => {
 
   //Getting input value
-  const newTask = document.querySelector('.js-task-input').value;
+  let newTask = document.querySelector('.js-input-btn').value;
   
   if (newTask != '') {
     //Pushing task into tasks array
     tasksArr.push({id: taskIdAcc, content: newTask, isCompleted: false});
-    
-    //Creating task template
-    const taskTemplate = `
-      <div id="${taskIdAcc}" class="task-container js-task-container">
-        <input type="checkbox" class="task-checkbox js-task-checkbox">
-        <label class="task-content" for="task-checkbox js-task-checkbox">${newTask}</label>
-      </div>
-      `;
 
-    //Adding new task to html
-    tasksList.innerHTML += taskTemplate;
+    inputBtn.value = '';
+    //Rebuilds tasks list in corresponding category
+    buildList(currentCategory == 'all' ? tasksArr : tasksArr.filter(task => task.isCompleted == false));
+
     //Next id
     taskIdAcc++;
   }
 }
 
-//Building all tasks list
-const buildAllList = () => {
+//Delete all completed tasks
+const deleteAll = () => {
+  //Filter the tasks array by uncompleted tasks
+  tasksArr = tasksArr.filter(task => task.isCompleted == false);
 
-  tasksArr.forEach(task => {
-    
-    const taskTemplate =`
-      <div id="${task.id}" class="task-container js-task-container">
-        <input type="checkbox" class="task-checkbox js-task-checkbox">
-        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
-      </div>
-      `;
-
-    const taskCompletedTemplate = `
-      <div id="${task.id}" class="task-container js-task-container">
-        <input type="checkbox" class="task-checkbox js-task-checkbox" checked>
-        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
-      </div>
-      `;
-
-    task.isCompleted ? tasksList.innerHTML += taskCompletedTemplate : tasksList.innerHTML += taskTemplate;
-  })
+  //Rebuilding completed tasks' html
+  buildList(tasksArr.filter(task => task.isCompleted == true));
 }
 
-//Building active tasks list
-const buildActiveList = () => {
+// *MANAGING EVENTS*
 
-  tasksArr.forEach(task => {
+//Loading page
+window.addEventListener('load', function() {
+  setCategory();
+  buildList(tasksArr);
+});
 
-    const taskTemplate = `
-      <div id="${task.id}" class="task-container js-task-container">
-        <input type="checkbox" class="task-checkbox js-task-checkbox">
-        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
-      </div>
-      `;
-
-    if (!task.isCompleted) {
-      tasksList.innerHTML += taskTemplate;
-    }
-  })
-}
-
-//Building completed tasks list
-
-const buildCompletedList = () => {
-
-  tasksArr.forEach(task => {
-
-    const taskCompletedTemplate = `
-      <div id="${task.id}" class="task-container js-task-container">
-        <input type="checkbox" class="task-checkbox js-task-checkbox" checked>
-        <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
-        <div class="btn-delete-container">
-          <button class="btn btn-delete js-btn-delete">Delete</button>
-        </div>
-      </div>
-      `;
-
-    if (task.isCompleted) {
-      tasksList.innerHTML += taskCompletedTemplate;
-    }
-  })
-}
 
 //Submitting new task
+submit.addEventListener('click', submitNewTask)
 
-document.querySelector('.js-task-submit').addEventListener('click', submitNewTask)
-
-//Check if checkbox is checked or unchecked
-
-let todolist = document.querySelector('.js-todolist__tasks-list');
-
-todolist.addEventListener('change', function(event) {
-
-  let checkboxes = document.querySelectorAll('.js-task-checkbox');
+//Checking if checkbox is checked or unchecked
+tasksList.addEventListener('change', function(event) {
   
   //Accessing task object by parent id...
   const parentId = event.target.parentElement.id;
@@ -124,29 +111,23 @@ categoriesList.addEventListener('change', function(event) {
   tasksList.innerHTML = '';
 
   //Checking opened category and building corresponding list
-  if (event.target.classList.contains('completed')) {
-    buildCompletedList();
+  if (event.target.id == 'completed') {
     currentCategory = 'completed';
-  } else if (event.target.classList.contains('all')) {
-    buildAllList();
-    currentCategory = 'all';
-  } else {
-    buildActiveList();
+    buildList(tasksArr.filter(task => task.isCompleted == true));
+  } else if (event.target.id == 'active') {
     currentCategory = 'active';
+    buildList(tasksArr.filter(task => task.isCompleted == false));
+  } else {
+    currentCategory = 'all';
+    buildList(tasksArr);
   }
 
   //Displaying delete all button if we're on completed category
-  if (currentCategory == 'completed') {
-    btnDeleteAll.style.display = 'flex';
-    input.style.display = 'none';
-  } else {
-    btnDeleteAll.style.display = 'none';
-    input.style.display = 'flex';
-  }
-
+  displayInterface()
 })
 
-// Managing completed tasks
+
+// *Managing completed tasks*
 //Using delete task button
 tasksList.addEventListener('click', function(event) {
   if (event.target.classList.contains('js-btn-delete')) {
@@ -158,18 +139,17 @@ tasksList.addEventListener('click', function(event) {
 
     //Remove from html
     event.target.closest('.js-task-container').remove();
+  } else if (event.target.classList.contains('js-task-checkbox')) {
+    console.log('checkbox')
   }
 })
 
-//Using delete all completed tasks  
+//Using Delete All Button
 btnDeleteAll.addEventListener('click', function() {
-    //Filter the tasks array by uncompleted tasks
-    tasksArr = tasksArr.filter(task => task.isCompleted == false);
-
-    //Reseting completed tasks' html
-    tasksList.innerHTML = `
-    `;  
+  deleteAll()
 });
 
-
-
+//Storaging tasks info before closing --- WIP
+// window.addEventListener('beforeunload', function() {
+//   this.localStorage.setItem('tasksArray', JSON.stringify(tasksArr))
+// })
