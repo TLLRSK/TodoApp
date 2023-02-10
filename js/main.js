@@ -3,6 +3,25 @@ let tasksArr = [];
 let taskIdAcc = 0;
 let currentCategory = 'all';
 
+/* Esto está genial, crear las referencias al principio nos evita estar todo el rato
+ pidiendolo en funciones. Lo único que podría sugerir es que si tienes tantas variables,
+ también podrías plantearte meterlo en un objeto para que el acceso
+ sea más sencillo y organizado
+
+  let buttonElements = {
+    submit: document.querySelector('.js-submit-btn'),
+    input: document.querySelector('.js-input-btn'),
+    delete: document.querySelector('.js-delete-all-container')
+  }
+
+  let contentElements = {
+    list: document.querySelector('.js-todolist__categories'),
+    input: document.querySelector('.js-todolist__input')
+  };
+
+  contentElements.input.value
+
+ */
 let categoriesList = document.querySelector('.js-todolist__categories');
 let tasksList = document.querySelector('.js-todolist__tasks-list');
 let btnDeleteAll = document.querySelector('.js-delete-all-container');
@@ -21,13 +40,38 @@ const setCategory = () => {
 //Setting interface
 const displayInterface = () => {
   if (currentCategory == 'completed') {
+    /*
+      Es recomendable siempre por temas de cascada en css y por mantenibilidad,
+      cambiar una clase en vez de la propiedad directamente. Una clase 'hide' con display: none 
+      te valdría para los dos elementos
+
+      btnDeleteAll.classList.remove('hide')
+      displayInput.classList.add('hide')
+    */
     btnDeleteAll.style.display = 'flex';
     displayInput.style.display = 'none';
+    // Aqui a nivel funcional, podrías mostrar un mensaje del estilo "no tienes todos, añade uno!"
     tasksList.innerHTML == '' ? console.log('empty') : console.log('not empty')
   } else {
     btnDeleteAll.style.display = 'none';
     displayInput.style.display = 'flex';
   }
+}
+
+const getDeleteButtonTemplate = () => {
+  return `<div class="btn-delete-container">
+    <button class="btn btn-delete js-btn-delete">Delete</button>
+  </div>`
+}
+
+const getTodoTemplate = (task, btnDelete) => {
+  return `
+    <div id="${task.id}" class="task-container js-task-container">
+      <input type="checkbox" class="task-checkbox js-task-checkbox" ${task.isCompleted === true ? 'checked' : ''}>
+      <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
+      ${currentCategory === 'completed' && task.isCompleted === true ? btnDelete : ''}
+    </div>
+  `
 }
 
 //Build corresponding list
@@ -37,19 +81,12 @@ const buildList = (arr) => {
 
   //Building list
   arr.forEach(task => {
-    const btnDelete = `
-      <div class="btn-delete-container">
-        <button class="btn btn-delete js-btn-delete">Delete</button>
-      </div>`
-
-    const taskTemplate = `
-    <div id="${task.id}" class="task-container js-task-container">
-      <input type="checkbox" class="task-checkbox js-task-checkbox" ${task.isCompleted === true ? 'checked' : ''}>
-      <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
-      ${currentCategory === 'completed' && task.isCompleted === true ? btnDelete : ''}
-    </div>
-  `
-  tasksList.innerHTML += taskTemplate;
+    // Genial esto, quizas podrías llegar a tener esto en pequeñas funciones
+    // para que sea más fácil de leer, pero esta Super bien que utilices la misma función para todos 
+    // los templates
+    const btnDelete = getDeleteButtonTemplate();
+    const taskTemplate = getTodoTemplate(task, btnDelete);
+    tasksList.innerHTML += taskTemplate;
   })
 }
 
@@ -58,9 +95,11 @@ const submitNewTask = () => {
 
   //Getting input value
   let newTask = document.querySelector('.js-input-btn').value;
-  
+
+  // Genial la comprobación
   if (newTask != '') {
     //Pushing task into tasks array
+    // interesante lo de meterle un id autoincremental 👌🏻 (normalmente queda más de la mano de back)
     tasksArr.push({id: taskIdAcc, content: newTask, isCompleted: false});
 
     inputBtn.value = '';
@@ -74,6 +113,8 @@ const submitNewTask = () => {
 
 //Delete all completed tasks
 const deleteAll = () => {
+  // Si guardases la lista que pintas cada vez en una variable global, no tendrias que volver
+  // a filtrar otra vez todo el array con la condición
   //Filter the tasks array by uncompleted tasks
   tasksArr = tasksArr.filter(task => task.isCompleted == false);
 
@@ -81,6 +122,8 @@ const deleteAll = () => {
   buildList(tasksArr.filter(task => task.isCompleted == true));
 }
 
+// Tu mismo tienes dos archivos aqui dentro para dividir,
+// functions.js e index.js con lo que tenemos debajo
 // *MANAGING EVENTS*
 
 //Loading page
@@ -89,13 +132,11 @@ window.addEventListener('load', function() {
   buildList(tasksArr);
 });
 
-
 //Submitting new task
 submit.addEventListener('click', submitNewTask)
 
 //Checking if checkbox is checked or unchecked
 tasksList.addEventListener('change', function(event) {
-  
   //Accessing task object by parent id...
   const parentId = event.target.parentElement.id;
   const taskObject = tasksArr.find(object => object.id == parentId)
@@ -131,7 +172,7 @@ categoriesList.addEventListener('change', function(event) {
 //Using delete task button
 tasksList.addEventListener('click', function(event) {
   if (event.target.classList.contains('js-btn-delete')) {
-    
+
     //Remove from tasks array
     const parentId = event.target.closest('.js-task-container').id;
     const taskIndex = tasksArr.indexOf(tasksArr.find(object => object.id == parentId))
