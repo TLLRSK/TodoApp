@@ -1,0 +1,146 @@
+.todolist {
+    margin: 124px 0;
+    width: 60vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 48px;
+    gap: 24px;
+    outline: 12px solid var(--white);
+    outline-offset: -12px;
+    background-color: var(--grey-100);
+}
+
+/* Header */
+.todolist__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.header__title  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--grey-200);
+}
+
+/* Categories */
+.todolist__categories {
+    display: flex;
+    flex-direction: row;
+    color: var(--white);
+    gap: 24px;
+}
+
+/* Input */
+.todolist__input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    
+}
+    .input {
+        appearance: none;
+        flex: 1;
+        height: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 52px;
+        font-size: 24px;
+        color: var(--black);
+    }
+    .input:focus {
+        outline: none;
+    }
+    .input::placeholder {
+        color: var(--grey-200);
+    }
+
+/* TASKS LIST*/
+.tasks-list__scheduled-title {
+    border-bottom: 2px solid var(--black);
+    padding: 12px;
+}
+
+.todolist__tasks-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px 0;
+    overflow-y: scroll;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 48px;
+    gap: 24px;
+    border-bottom: 2px solid var(--grey-200);
+    padding-bottom: 24px;
+}
+
+.task-checkbox {
+    width: 48px;
+    height: 48px;
+}
+
+.task-checkbox:checked + .task-content {
+    text-decoration:line-through;
+}
+
+.task-content {
+    height: 48px;
+    padding: 12px;
+    font-size: 24px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    color: var(--black)
+}
+
+/* Card footer */
+.card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__star {
+    width: 64px;
+}
+.star {
+    display: flex;
+    background-color: var(--yellow);
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: var(--white);
+}
+
+/* Delete */
+
+.task__delete {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+
+.todolist__delete-all {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+

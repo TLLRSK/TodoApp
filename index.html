@@ -5,38 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
     <title>Todo App</title>
 </head>
 <body>
-    <main>
-        <div class="todolist__title">
-            <h1>#todo</h1>
-        </div>
+    <main class="todolist box-shadow">
+        <header class="todolist__header">
+            <div class="header__title">
+                <h1>TodoApp</h1>
+            </div>
+        </header>
         <div class="todolist__categories js-todolist__categories">
-            <div class="category">
-                <input  id="all" class="category-radio all" type="radio" name="category">
-                <label for="all">All</label>
+            <div class="btn flex--1">
+                <label class="btn-category">
+                    <input  id="all" class="radio all" type="radio" name="category">
+                    ALL
+                </label>
             </div>
-            <div class="category">
-                <input id="active" class="category-radio active" type="radio" name="category">
-                <label for="active">Active</label>
+            <div class="btn flex--1">
+                <label class="btn-category">
+                    <input id="active" class="radio active" type="radio" name="category">
+                    ACTIVE
+                </label>
             </div>
-            <div class="category">
-                <input id="completed" class="category-radio completed" type="radio" name="category">
-                <label for="completed">Completed</label>
+            <div class="btn flex--1">
+                <label class="btn-category">
+                    <input id="completed" class="radio completed" type="radio" name="category">
+                    COMPLETED
+                </label>
             </div>
         </div>
+        
         <div class="todolist__input js-todolist__input">
-            <input class="input-btn js-input-btn" placeholder="Add a task..." required>
-            <input class="submit-btn js-submit-btn" type="submit" value="Add">
+            <input class="input js-input box-shadow" placeholder="Add a task..." required>
+            <div class="btn">
+                <input class="submit js-submit-btn" type="submit" value="+">
+            </div>
         </div>
+
         <div class="todolist__tasks-list js-todolist__tasks-list">
         </div>
 
-        <div class="delete-all-container js-delete-all-container">
-            <button class="btn btn-delete-all">Delete All</button>
+        <div class="card-footer">
+            <div class="flex--1">
+                <div class="btn footer__star">
+                    <div class="star">
+                        <h3>\</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="todolist__delete-all js-delete-all hidden">
+                <div class="btn">
+                    <button class="btn btn-delete-all box-shadow">DELETE ALL</button>
+                </div>
+            </div>
         </div>
     </main>
+    <script src="js/functions.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

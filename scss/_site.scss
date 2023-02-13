@@ -1,0 +1,28 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #7DD08A;
+    --green-100: #5FB96D;
+    --pink: #E97AD0;
+    --delete: #EE7777;
+    --delete-100: #DD4D4D;
+    --yellow: #E0BF49;
+    --grey-100: #EEEEEC;
+    --grey-200: #CBCBCB;
+    --white: #FDFDFD;
+    --black: #646463;
+
+    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+}
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: var(--grey-100);
+}
