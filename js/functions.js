@@ -26,7 +26,7 @@ const displayInterface = () => {
 
 const deleteButtonTemplate = () => {
   return `
-  <div class="task-delete">
+  <div class="task__delete">
     <button class="btn-delete js-btn-delete">Delete</button>
   </div>`
 }

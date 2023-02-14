@@ -30,6 +30,8 @@ contentElements.tasksList.addEventListener('change', function(event) {
 
   //...then changing isCompleted key value
   event.target.checked ? taskObject.isCompleted = true : taskObject.isCompleted = false;
+
+  console.log('click')
 })
 
 //Managing categories
@@ -84,8 +86,8 @@ window.addEventListener('beforeunload', function() {
 
 //Loading page
 window.addEventListener('load', function() {
-  // getTasks();
   setCategory();
   displayInterface();
+  getTasks();
   buildList(tasksArr);
 });

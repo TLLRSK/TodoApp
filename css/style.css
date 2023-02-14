@@ -5,6 +5,7 @@
 
 :root {
   --main: #444BFF;
+  --secondary: #5FB96D;
   --delete: #DD4D4D;
   --grey-100: #EEEEEC;
   --grey-200: #CBCBCB;
@@ -174,7 +175,7 @@ h2 {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 24px;
-  padding: 24px 0;
+  padding: 24px 24px 24px 0;
   overflow-y: scroll;
 }
 
@@ -190,7 +191,9 @@ h2 {
       -ms-flex-align: center;
           align-items: center;
   gap: 24px;
-  padding-bottom: 24px;
+  padding: 24px;
+  border-radius: 24px;
+  background-color: var(--grey-100);
 }
 
 .task-checkbox {
@@ -240,9 +243,6 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -266,7 +266,6 @@ h2 {
 
 .btn {
   background-color: var(--white);
-  padding: 12px;
   border-radius: 52px;
 }
 
@@ -304,8 +303,8 @@ h2 {
 
 .btn-category:hover {
   opacity: 1;
-  -webkit-box-shadow: 0 0 12px var(--main);
-          box-shadow: 0 0 12px var(--main);
+  -webkit-box-shadow: 0 0 6px var(--main);
+          box-shadow: 0 0 6px var(--main);
 }
 
 .category-selected {
@@ -315,12 +314,11 @@ h2 {
 }
 
 .submit {
-  height: 48px;
-  width: 48px;
   border: none;
   border-radius: 24px;
-  background-color: var(--main);
-  color: white;
+  background-color: var(--white);
+  outline: 2px solid var(--secondary);
+  color: var(--secondary);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -329,17 +327,17 @@ h2 {
           justify-content: center;
   text-align: center;
   cursor: pointer;
-  font-size: 42px;
-  -webkit-box-shadow: 0 0 0 var(--main);
-          box-shadow: 0 0 0 var(--main);
+  padding: 12px 24px;
+  font-size: 24px;
+  -webkit-box-shadow: 0 0 0 var(--secondary);
+          box-shadow: 0 0 0 var(--secondary);
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 .submit:hover {
-  background-color: var(--main);
-  -webkit-box-shadow: 0 2px 12px var(--main);
-          box-shadow: 0 2px 12px var(--main);
+  -webkit-box-shadow: 0 2px 12px var(--secondary);
+          box-shadow: 0 2px 12px var(--secondary);
 }
 
 .todolist__btn-useless {
@@ -392,20 +390,17 @@ h2 {
      -moz-appearance: none;
           appearance: none;
   border: none;
-  border-radius: 52x;
   outline: 2px solid var(--delete);
   color: var(--delete);
   cursor: pointer;
   font-size: 18px;
-  opacity: 0.8;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  -webkit-box-shadow: 0 0 8px var(--delete);
-          box-shadow: 0 0 8px var(--delete);
+  -webkit-box-shadow: 0 0 0 var(--delete);
+          box-shadow: 0 0 0 var(--delete);
 }
 
 .btn-delete-all:hover {
-  opacity: 1;
   outline: 2px solid var(--delete);
   color: var(--delete);
   -webkit-box-shadow: 0 2px 12px var(--delete);
