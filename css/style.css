@@ -4,16 +4,12 @@
 }
 
 :root {
-  --green: #7DD08A;
-  --green-100: #5FB96D;
-  --pink: #E97AD0;
-  --delete: #EE7777;
-  --delete-100: #DD4D4D;
-  --yellow: #E0BF49;
+  --main: #444BFF;
+  --delete: #DD4D4D;
   --grey-100: #EEEEEC;
   --grey-200: #CBCBCB;
   --white: #FDFDFD;
-  --black: #646463;
+  --black: #000000;
   font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 12px;
 }
@@ -48,7 +44,7 @@ h2 {
 
 .todolist {
   margin: 124px 0;
-  width: 60vw;
+  width: 720px;
   height: 80vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -60,9 +56,7 @@ h2 {
   border-radius: 20px;
   padding: 48px;
   gap: 24px;
-  outline: 12px solid var(--white);
-  outline-offset: -12px;
-  background-color: var(--grey-100);
+  background-color: var(--white);
 }
 
 /* Header */
@@ -77,9 +71,9 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .header__title {
@@ -92,7 +86,7 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: var(--grey-200);
+  color: var(--black);
 }
 
 /* Categories */
@@ -120,7 +114,7 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 12px;
+  gap: 24px;
 }
 
 .input {
@@ -131,7 +125,7 @@ h2 {
       -ms-flex: 1;
           flex: 1;
   height: 100%;
-  padding: 12px;
+  padding: 12px 24px;
   border: none;
   border-radius: 52px;
   font-size: 24px;
@@ -195,9 +189,7 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 48px;
   gap: 24px;
-  border-bottom: 2px solid var(--grey-200);
   padding-bottom: 24px;
 }
 
@@ -235,34 +227,12 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.footer__star {
-  width: 64px;
-}
-
-.star {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: var(--yellow);
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 24px;
-  color: var(--white);
 }
 
 /* Delete */
@@ -296,10 +266,8 @@ h2 {
 
 .btn {
   background-color: var(--white);
-  padding: 8px;
+  padding: 12px;
   border-radius: 52px;
-  -webkit-box-shadow: 0 0 12px var(--grey-200);
-          box-shadow: 0 0 12px var(--grey-200);
 }
 
 .radio {
@@ -326,22 +294,23 @@ h2 {
           align-items: center;
   font-size: 20px;
   font-weight: 400;
-  padding: 12px 0;
-  border-radius: 50px;
-  color: var(--white);
-  background-color: var(--black);
+  color: var(--black);
   opacity: 0.5;
+  -webkit-box-shadow: 0 0 0 var(--main);
+          box-shadow: 0 0 0 var(--main);
   -webkit-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
 }
 
 .btn-category:hover {
   opacity: 1;
+  -webkit-box-shadow: 0 0 12px var(--main);
+          box-shadow: 0 0 12px var(--main);
 }
 
 .category-selected {
   color: var(--white);
-  background-color: var(--pink);
+  background-color: var(--main);
   opacity: 1;
 }
 
@@ -350,7 +319,7 @@ h2 {
   width: 48px;
   border: none;
   border-radius: 24px;
-  background-color: var(--green);
+  background-color: var(--main);
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -361,12 +330,16 @@ h2 {
   text-align: center;
   cursor: pointer;
   font-size: 42px;
-  -webkit-transition: opacity 0.2s;
-  transition: opacity 0.2s;
+  -webkit-box-shadow: 0 0 0 var(--main);
+          box-shadow: 0 0 0 var(--main);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .submit:hover {
-  background-color: var(--green-100);
+  background-color: var(--main);
+  -webkit-box-shadow: 0 2px 12px var(--main);
+          box-shadow: 0 2px 12px var(--main);
 }
 
 .todolist__btn-useless {
@@ -401,13 +374,15 @@ h2 {
   color: var(--delete);
   background: transparent;
   padding: 12px;
+  opacity: 0.7;
   font-size: 24px;
   font-weight: 300;
   cursor: pointer;
 }
 
 .btn-delete:hover {
-  color: var(--delete-100);
+  color: var(--delete);
+  opacity: 1;
 }
 
 .btn-delete-all {
@@ -418,17 +393,23 @@ h2 {
           appearance: none;
   border: none;
   border-radius: 52x;
-  background: var(--delete);
-  color: var(--white);
+  outline: 2px solid var(--delete);
+  color: var(--delete);
   cursor: pointer;
   font-size: 18px;
   opacity: 0.8;
-  -webkit-transition: opacity 0.2s;
-  transition: opacity 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-box-shadow: 0 0 8px var(--delete);
+          box-shadow: 0 0 8px var(--delete);
 }
 
 .btn-delete-all:hover {
   opacity: 1;
+  outline: 2px solid var(--delete);
+  color: var(--delete);
+  -webkit-box-shadow: 0 2px 12px var(--delete);
+          box-shadow: 0 2px 12px var(--delete);
 }
 
 .btn-close {

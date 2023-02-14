@@ -1,15 +1,13 @@
 .todolist {
     margin: 124px 0;
-    width: 60vw;
+    width: 720px;
     height: 80vh;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
     padding: 48px;
     gap: 24px;
-    outline: 12px solid var(--white);
-    outline-offset: -12px;
-    background-color: var(--grey-100);
+    background-color: var(--white);
 }
 
 /* Header */
@@ -17,13 +15,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 .header__title  {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--grey-200);
+    color: var(--black);
 }
 
 /* Categories */
@@ -39,14 +37,14 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 12px;
+    gap: 24px;
     
 }
     .input {
         appearance: none;
         flex: 1;
         height: 100%;
-        padding: 12px;
+        padding: 12px 24px;
         border: none;
         border-radius: 52px;
         font-size: 24px;
@@ -78,9 +76,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 48px;
     gap: 24px;
-    border-bottom: 2px solid var(--grey-200);
     padding-bottom: 24px;
 }
 
@@ -107,23 +103,8 @@
 .card-footer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-}
-
-.footer__star {
-    width: 64px;
-}
-.star {
-    display: flex;
-    background-color: var(--yellow);
-    height: 48px;
-    width: 48px;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    color: var(--white);
 }
 
 /* Delete */

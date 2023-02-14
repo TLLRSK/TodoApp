@@ -84,7 +84,7 @@ window.addEventListener('beforeunload', function() {
 
 //Loading page
 window.addEventListener('load', function() {
-  getTasks();
+  // getTasks();
   setCategory();
   displayInterface();
   buildList(tasksArr);
