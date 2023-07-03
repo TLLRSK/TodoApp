@@ -48,15 +48,17 @@ const buildList = (arr) => {
   contentElements.tasksList.innerHTML = '';
 
   //Building list
-  arr.forEach(task => {
+  if (arr) {
+    arr.forEach(task => {
 
-    //Passing functions as arguments...
-    const deleteBtn = deleteButtonTemplate();
-    const taskTemplate = todolistTemplate(task, deleteBtn);
-    //...and building list with their values
-    contentElements.tasksList.innerHTML += taskTemplate;
-
-  })
+      //Passing functions as arguments...
+      const deleteBtn = deleteButtonTemplate();
+      const taskTemplate = todolistTemplate(task, deleteBtn);
+      //...and building list with their values
+      contentElements.tasksList.innerHTML += taskTemplate;
+  
+    })
+  }
 }
 
 //Submit new task
@@ -97,8 +99,17 @@ const storeTasks = () => {
 }
 
 //Get stored tasks from local storage
+// const getTasks = () => {
+//   const tasksArrInText = this.localStorage.getItem('storedTasks');
+//   tasksArr = JSON.parse(tasksArrInText);
+//   console.log(tasksArr)
+// }
+
 const getTasks = () => {
-  const tasksArrInText = this.localStorage.getItem('storedTasks');
-  tasksArr = JSON.parse(tasksArrInText);
-  console.log(tasksArr)
+  storedTasks = JSON.parse(localStorage.getItem('tasks'));
+  if (storedTasks && storedTasks.length > 0) {
+    tasksArr = storedTasks;
+  } else {
+    tasksArr = [];
+  }
 }
