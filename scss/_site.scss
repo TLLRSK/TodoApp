@@ -3,22 +3,18 @@
 }
 
 :root {
-    --main: #444BFF;
-    --secondary: #5FB96D;
-    --delete: #DD4D4D;
-    --grey-100: #EEEEEC;
-    --grey-200: #CBCBCB;
-    --white: #FDFDFD;
-    --black: #000000;
+    --black: oklch(43.13% 0 0);
+    --white: oklch(98.73% 0.004 106.47);
+    --grey-100: oklch(74.44% 0 0);
+    --grey-200: oklch(94.12% 0.024 117.05);
+    --green: oklch(92.03% 0.209 118.17);
     font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 12px;
+    font-size: 62.5%;
 }
 
 body {
-    margin: 0 auto;
     padding: 0;
-    min-height: 100vh;
+    margin: 0;
+    min-height: 100dvh;
     display: flex;
-    justify-content: center;
-    background-color: var(--grey-100);
 }

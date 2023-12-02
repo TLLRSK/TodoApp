@@ -1,15 +1,59 @@
 h1, h2, h3, p {
     margin: 0;
     padding: 0;
+    font-family: 'pp_neue_montrealbook', 'Courier New', Courier, monospace;
+}
+
+button, input, label {
+    font-family: 'pp_neue_montrealbook', 'Courier New', Courier, monospace;
 }
 
 h1 {
-    font-size: 36px;
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
     font-weight: 400;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
     font-weight: 400;
 }
 
+
+@font-face {
+    font-family: 'pp_neue_montrealbold';
+    src: url('../fonts/ppneuemontreal-bold-webfont.woff2') format('woff2'),
+         url('../fonts/ppneuemontreal-bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'pp_neue_montrealbook';
+    src: url('../fonts/ppneuemontreal-book-webfont.woff2') format('woff2'),
+         url('../fonts/ppneuemontreal-book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'pp_neue_montrealitalic';
+    src: url('../fonts/ppneuemontreal-italic-webfont.woff2') format('woff2'),
+         url('../fonts/ppneuemontreal-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+
+@font-face {
+    font-family: 'pp_neue_montrealmedium';
+    src: url('ppneuemontreal-medium-webfont.woff2') format('woff2'),
+         url('ppneuemontreal-medium-webfont.woff') format('woff');
+    font-weight: medium;
+    font-style: normal;
+
+}
