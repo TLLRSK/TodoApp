@@ -1,12 +1,13 @@
 @import './mixins';
-
-.btn {
-    border-radius: 4.8rem;
-}
+@import './variables';
 
 .radio {
     appearance: none;
     position: absolute;
+}
+.btn {
+    padding: 0;
+    margin: 0;
 }
 
 .btn-category {
@@ -16,52 +17,71 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 400;
-    border: 1px solid var(--black);
+    font-size: $fs--s;
+    font-weight: 600;
+    border: 2px solid var(--black);
+    border-bottom: none;
+    border-top-right-radius: 1.2rem;
+    border-top-left-radius: 1.2rem;
     color: var(--black);
     transition: all .1s ease-in;
-    @include mq-720 {
-        opacity: .7;
-    }
-}
-.btn-category:hover {
-    @include mq-720 {
-        opacity: 1;
-        border-color: var(--green);
+    &:hover {
+        @include mq-720 {
+            padding: 1.2rem 1.2rem;
+        }
     }
 }
 
-.category-selected {
-    border-color: var(--green);
-    background-color: var(--green);
-    @include mq-720 {
-        opacity: 1;
-    }
+.category-selected, .category-selected.btn-category:hover {
+    padding: 1.3rem 1.3rem;
+    transform: translateY(2px);
 }
 
-.submit {
-    border: none;
-    border-radius: 2.4rem;
-    background-color: var(--black);
-    color: var(--white);
+.btn-category--all.category-selected {
+    background-color: var(--pink);
+    border-bottom: 2px var(--pink)
+}
+.btn-category--active.category-selected {
+    background-color: var(--grey);
+    border-bottom: 2px var(--grey)
+}
+.btn-category--completed.category-selected {
+    background-color: var(--yellow);
+    border-bottom: 2px var(--yellow)
+}
+
+.btn--submit {
     display: flex;
     justify-content: center;
-    text-align: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    border: 2px solid;
+    border-radius: 50%;
+    color: var(--purple);
+    background-color: var(--white);
+    background-image: url('../icons/add--active.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: $fs--s;
+    font-weight: 600;
     cursor: pointer;
-    padding: .6rem 2.4rem;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    transform: translate(-.4rem, -.4rem);
     transition: all .2s;
-    @include mq-720 {
-        border: 1px solid var(--black);
-        background-color: transparent;
-        color: var(--black);
+    &[disabled] {
+        cursor: default;
+        color: var(--grey);
+        border-style: dashed;
+        background-image: url('../icons/add--disabled.svg');
+        transform: none;
     }
-}
-
-.submit:hover {
-    background-color: var(--black);
-    color: var(--white);
+    @include mq-720 {
+        transform: none;
+        width: 6rem;
+        height: 6rem;
+        &:hover {
+            transform: translate(-.4rem, -.4rem);
+        }
+    }
 }
 
 .btn-delete {
@@ -74,42 +94,44 @@
     height: 3.2rem;
     gap: 1.2rem;
     background: transparent;
-    background-image: url("/icons/delete.svg");
+    background-image: url("/icons/delete--default.svg");
+    background-size: 75%;
     background-repeat: no-repeat;
     background-position: center;
     color: var(--black);
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-size: $fs--s;
     line-height: 0;
     cursor: pointer;
 
     @include mq-720 {
         width: 4.8rem;
         height: 4.8rem;
-        &:hover {
-            border: 1px solid var(--black);
-            border-radius: 50%;
-        }
+        
+    }
+    &:hover {
+        background-image: url("/icons/delete--hover.svg");
     }
 }
 
 .btn-delete-all {
     appearance: none;
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
-    border: 1px solid var(--black);
+    height: 4.8rem;
+    border: 2px solid var(--black);
+    border-radius: 2.4rem;
     padding: .6rem 2.4rem;
-    gap: 1.2rem;
-    background-color: transparent;
+    background-color: var(--white);
     color: var(--black);
     transition: all .2s ease-in-out;
     cursor: pointer;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-}
-
-.btn-delete-all:hover {
-    background-color: var(--black);
-    color: var(--white);
+    font-size: $fs--s;
+    font-weight: 600;
+    z-index: 1;
+    position: relative;
+    @include mq-720 {
+        height: 6rem;
+        border-radius: 3.2rem;
+    }
 }

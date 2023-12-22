@@ -4,24 +4,31 @@
 }
 
 :root {
-  --black: oklch(43.13% 0 0);
-  --white: oklch(98.73% 0.004 106.47);
-  --grey-100: oklch(74.44% 0 0);
-  --grey-200: oklch(94.12% 0.024 117.05);
-  --green: oklch(92.03% 0.209 118.17);
+  --white: #FDFCFC;
+  --yellow: #DEF645;
+  --pink: #E597D0;
+  --purple: #6A46B8;
+  --grey: #C5BBBB;
+  --black: #000000;
   font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 62.5%;
 }
 
 body {
-  padding: 0;
+  padding: 2.4rem;
   margin: 0;
   min-height: 100dvh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
+@media all and (min-width: 720px) {
+  body {
+    padding: 3.2rem;
+  }
+}
 
+/* Font size */
 h1, h2, h3, p {
   margin: 0;
   padding: 0;
@@ -30,16 +37,17 @@ h1, h2, h3, p {
 
 button, input, label {
   font-family: "pp_neue_montrealbook", "Courier New", Courier, monospace;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
 }
 
 h1 {
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
-  font-weight: 400;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 600;
 }
 
-h2 {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 400;
+p, span {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
 }
 
 @font-face {
@@ -66,6 +74,7 @@ h2 {
   font-weight: medium;
   font-style: normal;
 }
+/* Font size */
 .todolist {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -77,14 +86,8 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: var(--white);
-  padding: 2.4rem;
-  gap: 2.4rem;
-}
-@media all and (min-width: 720px) {
-  .todolist {
-    padding: 4.8rem;
-  }
+  border: 2px solid var(--black);
+  border-radius: 2.4rem;
 }
 
 /* Header */
@@ -96,17 +99,12 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding: 1.2rem;
 }
-.todolist__header > h1 {
-  font-size: clamp(4.8rem, 6vw, 6.4rem);
-  font-weight: 400;
-  text-align: center;
+.todolist__header-title {
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 600;
   color: var(--black);
-}
-.todolist__header > h2 {
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  text-align: center;
-  color: var(--grey-100);
 }
 @media all and (min-width: 720px) {
   .todolist__header {
@@ -120,6 +118,7 @@ h2 {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    padding: 1.2rem;
   }
 }
 
@@ -132,7 +131,32 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  gap: 24px;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  height: 6rem;
+  padding: 0 1.2rem;
+  gap: 1.2rem;
+}
+@media all and (min-width: 720px) {
+  .todolist__categories {
+    height: 7.2rem;
+    padding: 0 2.4rem;
+    gap: 2.4rem;
+  }
+}
+
+/* Footer */
+.todolist__footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1.2rem;
+  gap: 1.2rem;
 }
 
 /* Input */
@@ -149,6 +173,24 @@ h2 {
           justify-content: center;
   gap: 1.2rem;
 }
+@media all and (min-width: 720px) {
+  .todolist__input {
+    gap: 2.4rem;
+  }
+}
+.todolist__input-button {
+  position: relative;
+}
+.todolist__input-button::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 0;
+  content: "";
+  border: 2px solid;
+  border-radius: 50%;
+  color: var(--purple);
+  background-color: var(--purple);
+}
 
 .input {
   -webkit-appearance: none;
@@ -157,54 +199,59 @@ h2 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  padding: 0 1.2rem;
-  border: none;
-  border-bottom: 1px solid var(--black);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  height: 4.8rem;
+  padding: 1.2rem;
+  border: 2px solid var(--grey);
+  border-radius: 2.4rem;
   background-color: transparent;
   color: var(--black);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
 }
-.input:focus {
-  border-color: var(--black);
+@media all and (min-width: 720px) {
+  .input {
+    height: 6rem;
+    border-radius: 3.2rem;
+  }
 }
-
 .input::-webkit-input-placeholder {
   font-family: "pp_neue_montrealbook", "Courier New", Courier, monospace;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--grey);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-
 .input::-moz-placeholder {
   font-family: "pp_neue_montrealbook", "Courier New", Courier, monospace;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--grey);
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-
 .input:-ms-input-placeholder {
   font-family: "pp_neue_montrealbook", "Courier New", Courier, monospace;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--grey);
   -ms-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-
 .input::-ms-input-placeholder {
   font-family: "pp_neue_montrealbook", "Courier New", Courier, monospace;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--grey);
   -ms-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-
 .input::placeholder {
   font-family: "pp_neue_montrealbook", "Courier New", Courier, monospace;
-  font-weight: 400;
+  font-weight: 600;
+  color: var(--grey);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-
 .input:focus {
   outline: none;
+  border-color: var(--black);
 }
 .input:focus::-webkit-input-placeholder {
   opacity: 0;
@@ -241,7 +288,8 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 1.2rem;
+  border-top: 2px solid var(--black);
+  border-bottom: 2px solid var(--black);
 }
 
 .task-container {
@@ -255,7 +303,9 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 1.2rem;
   gap: 1.2rem;
+  border-bottom: 2px solid var(--black);
 }
 
 .task-checkbox {
@@ -266,7 +316,7 @@ h2 {
   margin: 0;
   width: 3.2rem;
   height: 3.2rem;
-  border: 1px solid var(--black);
+  border: 2px solid var(--grey);
   position: relative;
 }
 @media all and (min-width: 720px) {
@@ -275,19 +325,26 @@ h2 {
     height: 4.8rem;
   }
 }
+.task-checkbox:after {
+  display: none;
+  position: absolute;
+  inset: 0 0 0 0;
+  content: "";
+  background-image: url("../icons/check.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.task-checkbox:hover {
+  border-color: var(--black);
+}
 .task-checkbox:checked {
-  background-color: var(--black);
+  border-color: var(--black);
+  background-color: var(--yellow);
 }
 .task-checkbox:checked:after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  font-size: 2.4rem;
-  font-weight: 300;
-  content: "X";
-  color: var(--white);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .task-checkbox:checked + .task-content {
@@ -307,8 +364,8 @@ h2 {
   padding: 0.6rem 1.2rem;
   border-radius: 2.4rem;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
   color: var(--black);
-  background-color: var(--grey-200);
 }
 @media all and (min-width: 720px) {
   .task-content {
@@ -335,23 +392,31 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 2.4rem;
+}
+@media all and (min-width: 720px) {
+  .todolist__delete-all {
+    padding: 3.2rem;
+  }
 }
 
-.btn {
-  border-radius: 4.8rem;
-}
-
+/* Font size */
 .radio {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   position: absolute;
+}
+
+.btn {
+  padding: 0;
+  margin: 0;
 }
 
 .btn-category {
@@ -370,64 +435,85 @@ h2 {
       -ms-flex-align: center;
           align-items: center;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 400;
-  border: 1px solid var(--black);
+  font-weight: 600;
+  border: 2px solid var(--black);
+  border-bottom: none;
+  border-top-right-radius: 1.2rem;
+  border-top-left-radius: 1.2rem;
   color: var(--black);
   -webkit-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
 }
 @media all and (min-width: 720px) {
-  .btn-category {
-    opacity: 0.7;
-  }
-}
-
-@media all and (min-width: 720px) {
   .btn-category:hover {
-    opacity: 1;
-    border-color: var(--green);
+    padding: 1.2rem 1.2rem;
   }
 }
 
-.category-selected {
-  border-color: var(--green);
-  background-color: var(--green);
-}
-@media all and (min-width: 720px) {
-  .category-selected {
-    opacity: 1;
-  }
+.category-selected, .category-selected.btn-category:hover {
+  padding: 1.3rem 1.3rem;
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
 }
 
-.submit {
-  border: none;
-  border-radius: 2.4rem;
-  background-color: var(--black);
-  color: var(--white);
+.btn-category--all.category-selected {
+  background-color: var(--pink);
+  border-bottom: 2px var(--pink);
+}
+
+.btn-category--active.category-selected {
+  background-color: var(--grey);
+  border-bottom: 2px var(--grey);
+}
+
+.btn-category--completed.category-selected {
+  background-color: var(--yellow);
+  border-bottom: 2px var(--yellow);
+}
+
+.btn--submit {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  padding: 0.6rem 2.4rem;
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 2px solid;
+  border-radius: 50%;
+  color: var(--purple);
+  background-color: var(--white);
+  background-image: url("../icons/add--active.svg");
+  background-position: center;
+  background-repeat: no-repeat;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transform: translate(-0.4rem, -0.4rem);
+          transform: translate(-0.4rem, -0.4rem);
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-@media all and (min-width: 720px) {
-  .submit {
-    border: 1px solid var(--black);
-    background-color: transparent;
-    color: var(--black);
-  }
+.btn--submit[disabled] {
+  cursor: default;
+  color: var(--grey);
+  border-style: dashed;
+  background-image: url("../icons/add--disabled.svg");
+  -webkit-transform: none;
+          transform: none;
 }
-
-.submit:hover {
-  background-color: var(--black);
-  color: var(--white);
+@media all and (min-width: 720px) {
+  .btn--submit {
+    -webkit-transform: none;
+            transform: none;
+    width: 6rem;
+    height: 6rem;
+  }
+  .btn--submit:hover {
+    -webkit-transform: translate(-0.4rem, -0.4rem);
+            transform: translate(-0.4rem, -0.4rem);
+  }
 }
 
 .btn-delete {
@@ -448,7 +534,8 @@ h2 {
   height: 3.2rem;
   gap: 1.2rem;
   background: transparent;
-  background-image: url("/icons/delete.svg");
+  background-image: url("/icons/delete--default.svg");
+  background-size: 75%;
   background-repeat: no-repeat;
   background-position: center;
   color: var(--black);
@@ -461,19 +548,15 @@ h2 {
     width: 4.8rem;
     height: 4.8rem;
   }
-  .btn-delete:hover {
-    border: 1px solid var(--black);
-    border-radius: 50%;
-  }
+}
+.btn-delete:hover {
+  background-image: url("/icons/delete--hover.svg");
 }
 
 .btn-delete-all {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -483,24 +566,28 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: none;
-  border: 1px solid var(--black);
+  height: 4.8rem;
+  border: 2px solid var(--black);
+  border-radius: 2.4rem;
   padding: 0.6rem 2.4rem;
-  gap: 1.2rem;
-  background-color: transparent;
+  background-color: var(--white);
   color: var(--black);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  z-index: 1;
+  position: relative;
+}
+@media all and (min-width: 720px) {
+  .btn-delete-all {
+    height: 6rem;
+    border-radius: 3.2rem;
+  }
 }
 
-.btn-delete-all:hover {
-  background-color: var(--black);
-  color: var(--white);
-}
-
-/* Utilities */
+/* Font size */ /* Utilities */
 .hidden {
   display: none;
 }

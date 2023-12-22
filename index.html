@@ -10,26 +10,25 @@
     <title>TodoApp</title>
 </head>
 <body>
-    <main class="todolist box-shadow">
+    <main class="todolist">
         <header class="todolist__header">
-            <h1>TodoList</h1>
-            <h2>Add, check & delete any task</h2>
+            <h1 class="todolist__header-title">Uptoyou</h1>
         </header>
         <div class="todolist__categories js-todolist__categories">
             <div class="btn flex--1">
-                <label class="btn btn-category">
+                <label class="btn btn-category btn-category--all">
                     <input  id="all" class="radio all" type="radio" name="category">
                     All
                 </label>
             </div>
             <div class="btn flex--1">
-                <label class="btn btn-category">
+                <label class="btn btn-category btn-category--active">
                     <input id="active" class="radio active" type="radio" name="category">
                     Active
                 </label>
             </div>
             <div class="btn flex--1">
-                <label class="btn btn-category">
+                <label class="btn btn-category btn-category--completed">
                     <input id="completed" class="radio completed" type="radio" name="category">
                     Checked
                 </label>
@@ -38,19 +37,22 @@
 
         <div class="todolist__tasks-list scroll js-todolist__tasks-list">
         </div>
-
-        <div class="todolist__input js-todolist__input">
-            <input class="input js-input" placeholder="Write a task" required>
-            <div class="btn">
-                <input class="submit js-submit-btn" type="submit" value="ADD">
+        <footer class="todolist__footer">
+            <p>Add a task</p>
+            <div class="todolist__input js-todolist__input">
+                <input class="input js-input" placeholder="Write a task" required>
+                <div class="todolist__input-button">
+                    <button class="btn btn--submit js-submit-btn" value='' type="submit" disabled>
+                </div>
             </div>
-        </div>
-
-        <div class="todolist__delete-all js-delete-all hidden">
-            <button class="btn btn-delete-all">
-                <span>DELETE ALL</span>
-            </button>
-        </div>
+    
+            <div class="todolist__delete-all js-delete-all hidden">
+                <button class="btn btn-delete-all">
+                    <span>DELETE ALL</span>
+                </button>
+            </div>
+        </footer>
+        
     </main>
     <script src="js/functions.js"></script>
     <script src="js/main.js"></script>

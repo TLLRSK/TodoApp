@@ -19,6 +19,9 @@ let contentElements = {
 
 // *MANAGING EVENTS*
 
+//Checking if task input has value
+contentElements.input.addEventListener('input', checkInputValue);
+
 //Submitting new task
 buttonElements.submitBtn.addEventListener('click', submitNewTask);
 

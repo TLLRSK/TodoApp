@@ -16,8 +16,6 @@ const displayInterface = () => {
   if (currentCategory == 'completed') {
     buttonElements.deleteAllBtn.classList.remove('hidden');
     contentElements.todolistInput.classList.add('hidden');
-    //Showing functional message
-    contentElements.tasksList.innerHTML == '' ? console.log('empty') : console.log('not empty')
   } else {
     buttonElements.deleteAllBtn.classList.add('hidden');
     contentElements.todolistInput.classList.remove('hidden');
@@ -56,6 +54,15 @@ const buildList = (arr) => {
       contentElements.tasksList.innerHTML += taskTemplate;
   
     })
+  }
+}
+
+//Checking if task input has value
+const checkInputValue = () => {
+  if (contentElements.input.value != '') {
+    buttonElements.submitBtn.removeAttribute('disabled');
+  } else {
+    buttonElements.submitBtn.setAttribute('disabled', true);
   }
 }
 

@@ -1,38 +1,30 @@
 @import './mixins';
+@import './variables';
 .todolist {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: var(--white);
-    padding: 2.4rem;
-    gap: 2.4rem;
-    
-    @include mq-720 {
-        padding: 4.8rem;
-    }
+    border: 2px solid var(--black);
+    border-radius: 2.4rem;
 }
 
 /* Header */
 .todolist__header {
     display: flex;
     flex-direction: column;
+    padding: 1.2rem;
 
-    & > h1 {
-        font-size: clamp(4.8rem, 6vw, 6.4rem);
-        font-weight: 400;
-        text-align: center;
+    &-title {
+        font-size: $fs--m;
+        font-weight: 600;
         color: var(--black);
-    }
-    & > h2 {
-        font-size: clamp(1.6rem, 3vw, 2.4rem);
-        text-align: center;
-        color: var(--grey-100);
     }
 
     @include mq-720 {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding: 1.2rem;
     }
 }
 
@@ -41,9 +33,24 @@
 .todolist__categories {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    align-items: flex-end;
+    height: 6rem;
+    padding: 0 1.2rem;
+    gap: 1.2rem;
+    @include mq-720 {
+        height: 7.2rem;
+        padding: 0 2.4rem;
+        gap: 2.4rem;
+    }
 }
 
+/* Footer */
+.todolist__footer {
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+    gap: 1.2rem;
+}
 
 /* Input */
 .todolist__input {
@@ -51,35 +58,56 @@
     flex-direction: row;
     justify-content: center;
     gap: 1.2rem;
-    
+    @include mq-720 {
+        gap: 2.4rem;
+    }
+    &-button {
+        position: relative;
+        &::before {
+            position: absolute;
+            z-index: -1;
+            inset: 0 0 0 0;
+            content: '';
+            border: 2px solid;
+            border-radius: 50%;
+            color: var(--purple);
+            background-color: var(--purple);
+        }
+    }
+ 
 }
 .input {
     appearance: none;
     flex: 1;
-    padding: 0 1.2rem;
-    border: none;
-    border-bottom: 1px solid var(--black);
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    height: 4.8rem;
+    padding: 1.2rem;
+    border: 2px solid var(--grey);
+    border-radius: 2.4rem;
     background-color: transparent;
     color: var(--black);
-    &:focus {
-        border-color: var(--black);
+    font-size: $fs--s;
+    font-weight: 600;
+    @include mq-720 {
+        height: 6rem;
+        border-radius: 3.2rem;
     }
-}
-
-.input::placeholder {
-    font-family: 'pp_neue_montrealbook', 'Courier New', Courier, monospace;
-    font-weight: 400;
-    transition: all .2s ease-in-out;
-}
-
-.input:focus {
-    outline: none;
     &::placeholder {
-        opacity: 0;
-        transform: translateY(-2.4rem);
+        font-family: 'pp_neue_montrealbook', 'Courier New', Courier, monospace;
+        font-weight: 600;
+        color: var(--grey);
+        transition: all .2s ease-in-out;
+    }
+    &:focus {
+        outline: none;
+        border-color: var(--black);
+        &::placeholder {
+            opacity: 0;
+            transform: translateY(-2.4rem);
+        }
     }
 }
+
+
 
 /* Tasks list*/
 
@@ -87,14 +115,17 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 1.2rem;
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
 }
 
 .task-container {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 1.2rem;
     gap: 1.2rem;
+    border-bottom: 2px solid var(--black);
 }
 
 .task-checkbox {
@@ -103,26 +134,32 @@
     margin: 0;
     width: 3.2rem;
     height: 3.2rem;
-    border: 1px solid var(--black);
+    border: 2px solid var(--grey);
     position: relative;
 
     @include mq-720 {
         width: 4.8rem;
         height: 4.8rem;
     }
+    &:after {
+        display: none;
+        position: absolute;
+        inset: 0 0 0 0;
+        content: '';
+        background-image: url('../icons/check.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    &:hover {
+        border-color: var(--black);
+    }
 
     &:checked {
-        background-color: var(--black);
+        border-color: var(--black);
+        background-color: var(--yellow);
 
         &:after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2.4rem;
-            font-weight: 300;
-            content: 'X';
-            color: var(--white);
+            display: flex;
         }
     }
     
@@ -138,9 +175,9 @@
     align-items: center;
     padding: .6rem 1.2rem;
     border-radius: 2.4rem;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-size: $fs--s;
+    font-weight: 600;
     color: var(--black);
-    background-color: var(--grey-200);
 
     @include mq-720 {
         height: 4.8rem;
@@ -158,8 +195,12 @@
 
 .todolist__delete-all {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    padding: 2.4rem;
+    @include mq-720 {
+       padding: 3.2rem;
+    }
 }
 
 
