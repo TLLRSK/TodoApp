@@ -1,30 +1,10 @@
 // *FUNCTIONS*
-//Set category
-const setCategory = () => {
-    document.querySelectorAll('.radio').forEach(category => {
-      if (category.id === currentCategory) {
-        category.checked = true
-        category.parentElement.classList.add('category-selected');
-      } else {
-        category.parentElement.classList.remove('category-selected');
-      }
-    })
-  }
-  
-//Set interface
-const displayInterface = () => {
-  if (currentCategory == 'completed') {
-    buttonElements.deleteAllBtn.classList.remove('hidden');
-    contentElements.todolistInput.classList.add('hidden');
-  } else {
-    buttonElements.deleteAllBtn.classList.add('hidden');
-    contentElements.todolistInput.classList.remove('hidden');
-  }
-}
 
+// Templates
 const deleteButtonTemplate = () => {
   return ` 
-  <button class="btn-delete js-btn-delete"></button>`
+    <button class="btn-delete js-btn-delete"></button>
+  `;
 }
 
 const todolistTemplate = (task, deleteBtn) => {
@@ -37,6 +17,20 @@ const todolistTemplate = (task, deleteBtn) => {
   `
 }
 
+//Set category
+const setCategory = () => {
+  document.querySelectorAll('.radio').forEach(category => {
+    if (category.id === currentCategory) {
+      category.checked = true
+      category.parentElement.classList.add('category-selected');
+    } else {
+      category.parentElement.classList.remove('category-selected');
+    }
+  })
+  displayFooter();
+  setDeleteAllButtonState();
+}
+
 //Build corresponding list
 const buildList = (arr) => {
 
@@ -46,23 +40,39 @@ const buildList = (arr) => {
   //Building list
   if (arr) {
     arr.forEach(task => {
-
       //Passing functions as arguments...
       const deleteBtn = deleteButtonTemplate();
       const taskTemplate = todolistTemplate(task, deleteBtn);
       //...and building list with their values
       contentElements.tasksList.innerHTML += taskTemplate;
-  
     })
   }
 }
 
-//Checking if task input has value
-const checkInputValue = () => {
-  if (contentElements.input.value != '') {
-    buttonElements.submitBtn.removeAttribute('disabled');
+// display footer
+const displayFooter = () => {
+  if (currentCategory == 'completed') {
+    contentElements.deleteAll.classList.remove('hidden');
+    contentElements.addTask.classList.add('hidden');
   } else {
-    buttonElements.submitBtn.setAttribute('disabled', true);
+    contentElements.deleteAll.classList.add('hidden');
+    contentElements.addTask.classList.remove('hidden');
+  }
+}
+
+// Setting footer listeners when elements are selected
+const setFooterListeners = () => {
+  contentElements.input.addEventListener('input', setInputBtn);
+  contentElements.submitBtn.addEventListener('click', submitNewTask);
+  contentElements.deleteAllBtn.addEventListener('click', () => {deleteAll()});
+}
+
+//Check if task input has value
+const setInputBtn = () => {
+  if (contentElements.input.value != '') {
+    contentElements.submitBtn.removeAttribute('disabled');
+  } else {
+    contentElements.submitBtn.setAttribute('disabled', true);
   }
 }
 
@@ -71,7 +81,7 @@ const submitNewTask = () => {
 
   //Getting input value
   let newTask = document.querySelector('.js-input').value;
-
+  
   //Checking if input has content
   if (newTask != '') {
     //Pushing task into tasks array
@@ -79,21 +89,39 @@ const submitNewTask = () => {
     contentElements.input.value = '';
     //Rebuilds tasks list in corresponding category
     buildList(currentCategory == 'all' ? tasksArr : tasksArr.filter(task => task.isCompleted == false));
+    //Reset button status
+    setInputBtn();
     //Next id
     taskIdAcc++;
+  }
+}
+
+// Check if there is any completed task
+const checkCompletedTasks = () => {
+  return tasksArr.some(task => task.isCompleted);
+}
+// Set delete all btn style
+const setDeleteAllButtonState = () => {
+  if (checkCompletedTasks()) {
+    contentElements.deleteAllBtn.removeAttribute('disabled');
+  } else {
+    contentElements.deleteAllBtn.setAttribute('disabled', true);
   }
 }
 
 //Delete all completed tasks
 const deleteCompletedTasks = () => {
   tasksArr = tasksArr.filter(task => task.isCompleted === false)
+ 
 }
 
-//Delete all completed tasks when deleteall button is pushed
+//Delete all completed tasks when delete all tasks button is pushed
 const deleteAll = () => {
   deleteCompletedTasks();
+
   //Rebuilding completed tasks' html
   buildList(tasksArr.filter(task => task.isCompleted == true));
+  setDeleteAllButtonState();
 }
 
 //Store tasks in local storage

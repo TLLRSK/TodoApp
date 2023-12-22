@@ -52,6 +52,12 @@
     gap: 1.2rem;
 }
 
+.todolist__add-task {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
 /* Input */
 .todolist__input {
     display: flex;
@@ -68,9 +74,7 @@
             z-index: -1;
             inset: 0 0 0 0;
             content: '';
-            border: 2px solid;
             border-radius: 50%;
-            color: var(--purple);
             background-color: var(--purple);
         }
     }
@@ -186,7 +190,6 @@
 }
 
 /* Delete */
-
 .task__delete {
     display: flex;
     flex-direction: row;
@@ -195,11 +198,14 @@
 
 .todolist__delete-all {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 2.4rem;
-    @include mq-720 {
-       padding: 3.2rem;
+    position: relative;
+    margin-left: auto;
+    &::before {
+        position: absolute;
+        inset: 0 0 0 0;
+        content: '';
+        border-radius: 3.2rem;
+        background-color: var(--black);
     }
 }
 

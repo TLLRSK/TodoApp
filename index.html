@@ -38,18 +38,18 @@
         <div class="todolist__tasks-list scroll js-todolist__tasks-list">
         </div>
         <footer class="todolist__footer">
-            <p>Add a task</p>
-            <div class="todolist__input js-todolist__input">
-                <input class="input js-input" placeholder="Write a task" required>
-                <div class="todolist__input-button">
-                    <button class="btn btn--submit js-submit-btn" value='' type="submit" disabled>
+            <div class="todolist__add-task js-todolist__add-task">
+                <p class="flex--1">Add a task</p>
+                <div class="todolist__input">
+                    <input class="input js-input" placeholder="Write a task" required>
+                    <div class="todolist__input-button">
+                        <button class="btn btn--submit js-submit-btn" value='' type="submit" disabled />
+                    </div>
                 </div>
             </div>
-    
-            <div class="todolist__delete-all js-delete-all hidden">
-                <button class="btn btn-delete-all">
-                    <span>DELETE ALL</span>
-                </button>
+
+            <div class="todolist__delete-all js-todolist__delete-all">
+                <button class="btn btn-delete-all js-delete-all-btn">DELETE ALL</button>
             </div>
         </footer>
         

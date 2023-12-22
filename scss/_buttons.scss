@@ -6,6 +6,9 @@
     position: absolute;
 }
 .btn {
+    appearance: none;
+    outline: none;
+    border: none;
     padding: 0;
     margin: 0;
 }
@@ -57,7 +60,7 @@
     height: 4.8rem;
     border: 2px solid;
     border-radius: 50%;
-    color: var(--purple);
+    border-color: var(--purple);
     background-color: var(--white);
     background-image: url('../icons/add--active.svg');
     background-position: center;
@@ -67,18 +70,23 @@
     cursor: pointer;
     transform: translate(-.4rem, -.4rem);
     transition: all .2s;
+
     &[disabled] {
         cursor: default;
-        color: var(--grey);
-        border-style: dashed;
+        border-color: var(--grey);
         background-image: url('../icons/add--disabled.svg');
         transform: none;
+        div:has(.todolist__input::before) {
+            color: red;
+            background-color: red;
+        }
     }
+
     @include mq-720 {
         transform: none;
         width: 6rem;
         height: 6rem;
-        &:hover {
+        &:not([disabled]):hover {
             transform: translate(-.4rem, -.4rem);
         }
     }
@@ -114,6 +122,7 @@
 }
 
 .btn-delete-all {
+    cursor: pointer;
     appearance: none;
     display: flex;
     align-items: center;
@@ -125,13 +134,23 @@
     background-color: var(--white);
     color: var(--black);
     transition: all .2s ease-in-out;
-    cursor: pointer;
+    transform: translate(-.4rem, -.4rem);
     font-size: $fs--s;
     font-weight: 600;
     z-index: 1;
-    position: relative;
+    &[disabled] {
+        cursor: default;
+        color: var(--grey);
+        border-color: var(--grey);
+        transform: none;
+    }
+
     @include mq-720 {
         height: 6rem;
         border-radius: 3.2rem;
+        transform: none;
+        &:not([disabled]):hover {
+            transform: translate(-.4rem, -.4rem);
+        }
     }
 }

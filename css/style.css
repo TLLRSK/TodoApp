@@ -159,6 +159,17 @@ p, span {
   gap: 1.2rem;
 }
 
+.todolist__add-task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.2rem;
+}
+
 /* Input */
 .todolist__input {
   display: -webkit-box;
@@ -186,9 +197,7 @@ p, span {
   z-index: -1;
   inset: 0 0 0 0;
   content: "";
-  border: 2px solid;
   border-radius: 50%;
-  color: var(--purple);
   background-color: var(--purple);
 }
 
@@ -392,18 +401,15 @@ p, span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 2.4rem;
+  position: relative;
+  margin-left: auto;
 }
-@media all and (min-width: 720px) {
-  .todolist__delete-all {
-    padding: 3.2rem;
-  }
+.todolist__delete-all::before {
+  position: absolute;
+  inset: 0 0 0 0;
+  content: "";
+  border-radius: 3.2rem;
+  background-color: var(--black);
 }
 
 /* Font size */
@@ -415,6 +421,11 @@ p, span {
 }
 
 .btn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  border: none;
   padding: 0;
   margin: 0;
 }
@@ -482,7 +493,7 @@ p, span {
   height: 4.8rem;
   border: 2px solid;
   border-radius: 50%;
-  color: var(--purple);
+  border-color: var(--purple);
   background-color: var(--white);
   background-image: url("../icons/add--active.svg");
   background-position: center;
@@ -497,11 +508,14 @@ p, span {
 }
 .btn--submit[disabled] {
   cursor: default;
-  color: var(--grey);
-  border-style: dashed;
+  border-color: var(--grey);
   background-image: url("../icons/add--disabled.svg");
   -webkit-transform: none;
           transform: none;
+}
+.btn--submit[disabled] div:has(.todolist__input::before) {
+  color: red;
+  background-color: red;
 }
 @media all and (min-width: 720px) {
   .btn--submit {
@@ -510,7 +524,7 @@ p, span {
     width: 6rem;
     height: 6rem;
   }
-  .btn--submit:hover {
+  .btn--submit:not([disabled]):hover {
     -webkit-transform: translate(-0.4rem, -0.4rem);
             transform: translate(-0.4rem, -0.4rem);
   }
@@ -554,6 +568,7 @@ p, span {
 }
 
 .btn-delete-all {
+  cursor: pointer;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -574,24 +589,33 @@ p, span {
   color: var(--black);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  cursor: pointer;
+  -webkit-transform: translate(-0.4rem, -0.4rem);
+          transform: translate(-0.4rem, -0.4rem);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 600;
   z-index: 1;
-  position: relative;
+}
+.btn-delete-all[disabled] {
+  cursor: default;
+  color: var(--grey);
+  border-color: var(--grey);
+  -webkit-transform: none;
+          transform: none;
 }
 @media all and (min-width: 720px) {
   .btn-delete-all {
     height: 6rem;
     border-radius: 3.2rem;
+    -webkit-transform: none;
+            transform: none;
+  }
+  .btn-delete-all:not([disabled]):hover {
+    -webkit-transform: translate(-0.4rem, -0.4rem);
+            transform: translate(-0.4rem, -0.4rem);
   }
 }
 
 /* Font size */ /* Utilities */
-.hidden {
-  display: none;
-}
-
 .flex--1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -604,4 +628,8 @@ p, span {
 
 .color--black {
   color: var(--black);
+}
+
+.hidden {
+  display: none;
 }
