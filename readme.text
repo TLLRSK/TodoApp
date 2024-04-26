@@ -1,0 +1,22 @@
+TODOAPP
+
+2023
+
+Basic ToDoList application.
+
+Add, check and delete any task.
+
+Made with:
+- Html
+- Sass
+- Javascript
+
+Live:
+https://todoapp-pjgv.netlify.app
+
+
+📗 WHAT I'VE LEARNT 📗
+
+- Using and manipulating DOM with Js.
+- Using localStorage.
+- Managing an objects list for creating, checking and deleting.

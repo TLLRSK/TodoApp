@@ -14,26 +14,26 @@
         <header class="todolist__header">
             <h1 class="todolist__header-title">Uptoyou</h1>
         </header>
-        <div class="todolist__categories js-todolist__categories">
+        <form class="todolist__categories js-todolist__categories">
             <div class="btn flex--1">
-                <label class="btn btn-category btn-category--all">
+                <label for="all" class="btn btn-category btn-category--all">
                     <input  id="all" class="radio all" type="radio" name="category">
                     All
                 </label>
             </div>
             <div class="btn flex--1">
-                <label class="btn btn-category btn-category--active">
+                <label for="active" class="btn btn-category btn-category--active">
                     <input id="active" class="radio active" type="radio" name="category">
                     Active
                 </label>
             </div>
             <div class="btn flex--1">
-                <label class="btn btn-category btn-category--completed">
+                <label for="completed" class="btn btn-category btn-category--completed">
                     <input id="completed" class="radio completed" type="radio" name="category">
                     Checked
                 </label>
             </div>
-        </div>
+        </form>
 
         <div class="todolist__tasks-list scroll js-todolist__tasks-list">
         </div>
@@ -43,7 +43,7 @@
                 <div class="todolist__input">
                     <input class="input js-input" placeholder="Write a task" required>
                     <div class="todolist__input-button">
-                        <button class="btn btn--submit js-submit-btn" value='' type="submit" disabled />
+                        <button class="btn btn--submit js-submit-btn" value='' type="submit" disabled>
                     </div>
                 </div>
             </div>

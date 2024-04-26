@@ -10,8 +10,8 @@ const deleteButtonTemplate = () => {
 const todolistTemplate = (task, deleteBtn) => {
   return `
     <div id="${task.id}" class="task-container js-task-container">
-      <input type="checkbox" class="task-checkbox js-task-checkbox" ${task.isCompleted === true ? 'checked' : ''}>
-      <label class="task-content" for="task-checkbox js-task-checkbox">${task.content}</label>
+      <input type="checkbox" id="task-checkbox" class="task-checkbox js-task-checkbox" ${task.isCompleted === true ? 'checked' : ''}>
+      <p class="task-content">${task.content}</p>
       ${currentCategory === 'completed' && task.isCompleted === true ? deleteBtn : ''}
     </div>
   `
@@ -49,7 +49,7 @@ const buildList = (arr) => {
   }
 }
 
-// display footer
+// Display footer
 const displayFooter = () => {
   if (currentCategory == 'completed') {
     contentElements.deleteAll.classList.remove('hidden');
@@ -127,11 +127,11 @@ const deleteAll = () => {
 //Store tasks in local storage
 const storeTasks = () => {
   storedTasks = tasksArr;
-  this.localStorage.setItem('miStoredTasks', JSON.stringify(storedTasks));
+  this.localStorage.setItem('storedTasks', JSON.stringify(storedTasks));
 }
 
 const getTasks = () => {
-  storedTasks = JSON.parse(localStorage.getItem('miStoredTasks'));
+  storedTasks = JSON.parse(localStorage.getItem('storedTasks'));
   if (storedTasks && storedTasks.length > 0) {
     tasksArr = storedTasks;
   } else {
